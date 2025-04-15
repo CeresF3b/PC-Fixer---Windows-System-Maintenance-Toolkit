@@ -38,10 +38,10 @@ PC Fixer is a simple and intuitive tool designed to help maintain and optimize y
 - **No Technical Knowledge Required**: This tool is designed for all users, regardless of computer experience.
 
 - **Simple Operation**:
-    1. Double-click on `PCFixer_Launcher.bat` (no manual administrator rights needed).
-    2. When prompted, click "Yes" to allow administrator permissions.
-    3. Choose an option from the menu by typing the number (1-5) or Q to exit.
-    4. Wait for the selected operation to complete.
+    1 Double-click on `PCFixer_Launcher.bat` (no manual administrator rights needed).
+    2 When prompted, click "Yes" to allow administrator permissions.
+    3 Choose an option from the menu by typing the number (1-5) or Q to exit.
+    4 Wait for the selected operation to complete.
 
 - **Options**:
     - **Quick Fix**: Select 5 for full automatic maintenance.
