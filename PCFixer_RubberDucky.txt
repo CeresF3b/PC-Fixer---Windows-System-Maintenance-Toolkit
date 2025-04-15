@@ -1,119 +1,25 @@
 REM PC Fixer - Rubber Ducky Script
-REM Converted from PCFixer.ps1
+REM UAC Auto-Confirm Fix for Italian Systems
 REM Created by CeresF3B
+REM Modified by Assistant
 
-REM Initialization and admin privileges request
 DELAY 1000
 GUI r
 DELAY 500
-STRING powershell -Command "Start-Process powershell -Verb RunAs"
+
+STRING powershell
+DELAY 300
+CTRL-SHIFT ENTER
+DELAY 3500
+
+REM Seleziona "Sì" nell'UAC con navigazione esplicita
+TAB
+DELAY 100
+TAB
+DELAY 100
 ENTER
 DELAY 2000
 
-REM UAC prompt might appear, confirm it
-ALT y
-DELAY 1000
-
-REM Show header
-STRING Write-Host "-----------------------------------------" -ForegroundColor Cyan
-ENTER
-STRING Write-Host "|             PC FIXER                |" -ForegroundColor Cyan
-ENTER
-STRING Write-Host "|        Created by CeresF3B          |" -ForegroundColor Cyan
-ENTER
-STRING Write-Host "-----------------------------------------" -ForegroundColor Cyan
-ENTER
-STRING Write-Host "" 
-ENTER
-
-REM Clean Temp/Prefetch
-STRING Write-Host "[*] Cleaning temporary files..." -ForegroundColor Yellow
-ENTER
-STRING Remove-Item -Path "$env:TEMP\*" -Force -Recurse -ErrorAction SilentlyContinue
-ENTER
-STRING Remove-Item -Path "C:\Windows\Temp\*" -Force -Recurse -ErrorAction SilentlyContinue
-ENTER
-STRING Remove-Item -Path "C:\Windows\Prefetch\*" -Force -Recurse -ErrorAction SilentlyContinue
-ENTER
-STRING Write-Host "[+] Cleaning completed!" -ForegroundColor Green
-ENTER
-
-REM System Repairs
-STRING Write-Host "[*] Starting system repairs..." -ForegroundColor Yellow
-ENTER
-STRING Write-Host "[*] Running SFC /scannow..." -ForegroundColor Yellow
-ENTER
-STRING sfc /scannow
-ENTER
-DELAY 5000
-STRING Write-Host "[*] Running DISM /CheckHealth..." -ForegroundColor Yellow
-ENTER
-STRING DISM /Online /Cleanup-Image /CheckHealth
-ENTER
-DELAY 2000
-STRING Write-Host "[*] Running DISM /ScanHealth..." -ForegroundColor Yellow
-ENTER
-STRING DISM /Online /Cleanup-Image /ScanHealth
-ENTER
-DELAY 3000
-STRING Write-Host "[*] Running DISM /RestoreHealth..." -ForegroundColor Yellow
-ENTER
-STRING DISM /Online /Cleanup-Image /RestoreHealth
-ENTER
-DELAY 5000
-STRING Write-Host "[+] System repairs completed!" -ForegroundColor Green
-ENTER
-
-REM Network Reset
-STRING Write-Host "[*] Resetting network configurations..." -ForegroundColor Yellow
-ENTER
-STRING ipconfig /flushdns
-ENTER
-STRING netsh winsock reset
-ENTER
-STRING netsh int ip reset
-ENTER
-STRING Write-Host "[+] Network reset completed!" -ForegroundColor Green
-ENTER
-
-REM Battery Report with Auto-Detection
-STRING Write-Host "[*] Checking device type..." -ForegroundColor Yellow
-ENTER
-STRING $batteryStatus = Get-WmiObject -Class Win32_Battery -ErrorAction SilentlyContinue
-ENTER
-STRING if ($batteryStatus) {
-ENTER
-STRING     Write-Host "[*] Laptop detected. Generating battery report..." -ForegroundColor Yellow
-ENTER
-STRING     powercfg /batteryreport /output "$env:USERPROFILE\Desktop\BatteryReport.html"
-ENTER
-STRING     Write-Host "[+] Battery report successfully generated on Desktop!" -ForegroundColor Green
-ENTER
-STRING } else {
-ENTER
-STRING     Write-Host "[!] Desktop PC detected. Battery report cannot be generated." -ForegroundColor Red
-ENTER
-STRING     Write-Host "[!] This feature is only available for laptops with batteries." -ForegroundColor Red
-ENTER
-STRING }
-ENTER
-
-REM Exit message
-STRING Write-Host "" 
-ENTER
-STRING Write-Host "[+] All operations completed successfully!" -ForegroundColor Green
-ENTER
-STRING Write-Host "[+] Thank you for using PC Fixer!" -ForegroundColor Green
-ENTER
-STRING Write-Host "[+] Created by CeresF3B" -ForegroundColor Cyan
-ENTER
-
-REM Save exit message
-STRING $exitMessage = "Thank you for using PC Fixer! Created by CeresF3B"
-ENTER
-STRING $exitMessage | Out-File -FilePath "$env:TEMP\PCFixerExitMessage.txt"
-ENTER
-
-REM Exit with code 200
-STRING exit 200
+REM Esegui lo script remoto
+STRING irm https://raw.githubusercontent.com/CeresF3b/PC-Fixer/main/PCFixer.ps1 | iex
 ENTER
