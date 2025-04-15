@@ -1,39 +1,63 @@
-    1-Click Maintenance: Fully automated or customizable system optimization.
+# PC Fixer
 
-    Core Functions:
+## Overview
+PC Fixer is a simple and intuitive tool designed to help maintain and optimize your Windows PC. Created by CeresF3B and improved by Trae AI, this tool performs various system maintenance tasks with just a few clicks.
 
-        🗑️ Temp/Prefetch Cleanup: Aggressively deletes junk files from %TEMP%, Windows\Temp, and Prefetch.
+## Features
 
-        🔧 System Repairs:
+- **One-Click Maintenance**: Fully automated or customizable system optimization.
 
-            SFC /scannow for file integrity checks.
+- **Main Functions**:
 
-            DISM /RestoreHealth for OS image repair.
+    - 🗑️ **Temp/Prefetch Cleaning**: Aggressively removes junk files from %TEMP%, Windows\Temp, and Prefetch.
 
-        🌐 Network Reset: Flushes DNS, resets Winsock, and IP configurations.
+    - 🔧 **System Repairs**:
+        - SFC /scannow for file integrity checks.
+        - DISM /CheckHealth for an initial system health assessment.
+        - DISM /ScanHealth for a more thorough system scan.
+        - DISM /RestoreHealth for complete operating system image repair.
 
-        🔋 Battery Health Report: Generates an HTML battery diagnostics report.
+    - 🌐 **Network Reset**: Flushes DNS cache, resets Winsock and IP configurations.
 
-        ⚡ Full Automation Mode: Run all tasks sequentially for hands-free maintenance.
+    - 🔋 **Battery Report**: Generates an HTML diagnostic report on battery health.
+    
+    - ⚡ **Full Automatic Mode**: Runs all tasks in sequence for hands-free maintenance.
 
-    User-Friendly:
+- **Easy to Use**:
 
-        Interactive menu with color-coded status updates (✅ success, ❌ errors).
+    - Interactive menu with colored status updates (✅ success, ❌ errors).
 
-        Automatic admin rights escalation via batch file.
+    - Automatic administrator rights elevation through batch file.
 
-        Clear exit message with gratitude.
+    - Clear exit message with thank you note.
+    
+    - Also available in Rubber Ducky version for advanced automation.
 
-Usage
+## Usage
 
-    Clone/Download: Place PCFixer.ps1 and PCFixer.bat in the same folder.
+- **No Technical Knowledge Required**: This tool is designed for all users, regardless of computer experience.
 
-    Run: Double-click PCFixer.bat (no manual admin rights needed).
+- **Simple Operation**:
+    1. Double-click on `PCFixer_Launcher.bat` (no manual administrator rights needed).
+    2. When prompted, click "Yes" to allow administrator permissions.
+    3. Choose an option from the menu by typing the number (1-5) or Q to exit.
+    4. Wait for the selected operation to complete.
 
-    Choose an Option:
+- **Options**:
+    - **Quick Fix**: Select 5 for full automatic maintenance.
+    - **Manual Control**: Choose specific tasks (1-4).
+    - **Exit**: Press Q to exit with a thank you message.
+    
+- **Rubber Ducky Version**:
+    - Use the `PCFixer_Unified_RubberDucky.txt` file for automation via Rubber Ducky devices.
 
-        Quick Fix: Select 6 for full automated maintenance.
+## System Requirements
+- Windows 10 or Windows 11
+- Administrator privileges (automatically requested by the launcher)
 
-        Manual Control: Pick specific tasks (1-5).
-
-        Exit Gracefully: Press Q to quit with a thank-you message.
+## Notes
+- The battery report function is only useful for laptop users
+- Some operations may take several minutes to complete
+- All operations are safe and follow Microsoft's recommended maintenance procedures
+- The unified version offers an improved interface and additional features compared to the original versions
+- Rubber Ducky script is available for advanced automation
