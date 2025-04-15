@@ -38,10 +38,16 @@ PC Fixer is a simple and intuitive tool designed to help maintain and optimize y
 - **No Technical Knowledge Required**: This tool is designed for all users, regardless of computer experience.
 
 - **Simple Operation**:
-    - Double-click on `PCFixer_Launcher.bat` (no manual administrator rights needed).
-    - When prompted, click "Yes" to allow administrator permissions.
-    - Choose an option from the menu by typing the number (1-5) or Q to exit.
-    - Wait for the selected operation to complete.
+    1. Double-click on `PCFixer_Launcher.bat` (no manual administrator rights needed).
+    2. When prompted, click "Yes" to allow administrator permissions.
+    3. Choose an option from the menu by typing the number (1-5) or Q to exit.
+    4. Wait for the selected operation to complete.
+
+- **Direct Execution via PowerShell**:
+    1. Open PowerShell.
+    2. Copy and paste this command: `irm https://raw.githubusercontent.com/CeresF3b/PC-Fixer/main/PCFixer.ps1 | iex`
+    3. The script will execute directly without downloading any files.
+    4. Follow the on-screen menu instructions.
 
 - **Options**:
     - **Quick Fix**: Select 5 for full automatic maintenance.
@@ -49,7 +55,8 @@ PC Fixer is a simple and intuitive tool designed to help maintain and optimize y
     - **Exit**: Press Q to exit with a thank you message.
     
 - **Rubber Ducky Version**:
-    - Use the `PCFixer_Unified_RubberDucky.txt` file for automation via Rubber Ducky devices.
+    - Use the `PCFixer.txt` file for automation via Rubber Ducky devices.
+    - The Rubber Ducky script uses the direct PowerShell command method for simplified execution.
 
 ## System Requirements
 - Windows 10 or Windows 11
