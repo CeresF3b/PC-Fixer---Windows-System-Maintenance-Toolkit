@@ -6,7 +6,7 @@
 
 ## Overview
 
-PC Fixer is a simple tool designed to maintain and optimize your Windows PC. Created by CeresF3B and enhanced by Trae AI, it performs various system maintenance tasks with just a few clicks.
+PC Fixer is a simple tool designed to maintain and optimize your Windows PC. Created by CeresF3B, it performs various system maintenance tasks with just a few clicks.
 
 
 
