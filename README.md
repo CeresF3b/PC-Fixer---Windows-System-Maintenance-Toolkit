@@ -66,5 +66,4 @@ PC Fixer is a simple and intuitive tool designed to help maintain and optimize y
 - The battery report function is only useful for laptop users
 - Some operations may take several minutes to complete
 - All operations are safe and follow Microsoft's recommended maintenance procedures
-- The unified version offers an improved interface and additional features compared to the original versions
 - Rubber Ducky script is available for advanced automation
