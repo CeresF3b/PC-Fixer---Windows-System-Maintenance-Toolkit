@@ -24,10 +24,62 @@ function Show-Menu {
 # Function to clean temporary files
 function Clean-TempFiles {
     Write-Host "[*] Cleaning temporary files..." -ForegroundColor Yellow
+    
+    # Cleaning standard temporary files
+    Write-Host "[*] Cleaning standard temporary files..." -ForegroundColor Yellow
     Remove-Item -Path "$env:TEMP\*" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item -Path "C:\Windows\Temp\*" -Force -Recurse -ErrorAction SilentlyContinue
     Remove-Item -Path "C:\Windows\Prefetch\*" -Force -Recurse -ErrorAction SilentlyContinue
-    Write-Host "[+] Cleaning completed!" -ForegroundColor Green
+    
+    # Cleaning additional temporary files
+    Write-Host "[*] Cleaning additional temporary files..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:WINDIR\Downloaded Program Files\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning Microsoft Defender Antivirus files
+    Write-Host "[*] Cleaning Microsoft Defender Antivirus files..." -ForegroundColor Yellow
+    Remove-Item -Path "C:\ProgramData\Microsoft\Windows Defender\Scans\History\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning Windows Update log files
+    Write-Host "[*] Cleaning Windows Update log files..." -ForegroundColor Yellow
+    Remove-Item -Path "C:\Windows\Logs\WindowsUpdate\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning Internet temporary files
+    Write-Host "[*] Cleaning Internet temporary files..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Windows\INetCache\*" -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Windows\WebCache\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning DirectX shader cache
+    Write-Host "[*] Cleaning DirectX shader cache..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:LOCALAPPDATA\D3DSCache\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning delivery optimization files
+    Write-Host "[*] Cleaning delivery optimization files..." -ForegroundColor Yellow
+    Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization\Cache\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning driver packages
+    Write-Host "[*] Cleaning driver packages..." -ForegroundColor Yellow
+    DISM.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase /NoRestart
+    
+    # Cleaning thumbnails
+    Write-Host "[*] Cleaning thumbnails..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Windows\Explorer\thumbcache_*.db" -Force -ErrorAction SilentlyContinue
+    
+    # Cleaning Windows error reports
+    Write-Host "[*] Cleaning Windows error reports..." -ForegroundColor Yellow
+    Remove-Item -Path "C:\Windows\WER\*" -Force -Recurse -ErrorAction SilentlyContinue
+    
+    # Cleaning Recycle Bin (optional)
+    Write-Host "[*] Do you want to empty the Recycle Bin? (Y/N)" -ForegroundColor Yellow
+    $cleanRecycleBin = Read-Host
+    if ($cleanRecycleBin -eq "Y" -or $cleanRecycleBin -eq "y") {
+        Write-Host "[*] Cleaning Recycle Bin..." -ForegroundColor Yellow
+        Clear-RecycleBin -Force -ErrorAction SilentlyContinue
+        Write-Host "[+] Recycle Bin emptied successfully!" -ForegroundColor Green
+    } else {
+        Write-Host "[*] Skipping Recycle Bin cleanup." -ForegroundColor Yellow
+    }
+    
+    Write-Host "[+] Advanced cleaning completed!" -ForegroundColor Green
 }
 
 # Function for system repairs
@@ -79,6 +131,8 @@ function Generate-BatteryReport {
 
 # Function to run all operations
 function Run-AllOperations {
+    # For automated operation, we'll skip Recycle Bin cleanup by default
+    # This is handled inside the Clean-TempFiles function with user prompt
     Clean-TempFiles
     Repair-System
     Reset-NetworkConfig
