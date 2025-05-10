@@ -173,13 +173,18 @@ function Exit-Program {
     $exitMessage = "Thank you for using PC Fixer! Created by CeresF3B"
     $exitMessage | Out-File -FilePath "$env:TEMP\PCFixerExitMessage.txt"
     
-    # Ask the user to press any key to exit instead of closing automatically
+    # Countdown timer before automatic exit
     Write-Host ""
-    Write-Host "[*] Press any key to exit..." -ForegroundColor Yellow
-    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    $countdown = 5
+    while ($countdown -gt 0) {
+        Write-Host "[*] PowerShell will close automatically in $countdown seconds..." -ForegroundColor Yellow -NoNewline
+        Start-Sleep -Seconds 1
+        Write-Host "`r" -NoNewline
+        $countdown--
+    }
     
-    # End the main loop without closing PowerShell
-    break
+    # Exit PowerShell
+    exit
 }
 
 # Main program loop
