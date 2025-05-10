@@ -16,7 +16,8 @@ function Show-Menu {
     Write-Host "2. System repairs" -ForegroundColor White
     Write-Host "3. Reset network configurations" -ForegroundColor White
     Write-Host "4. Generate battery report" -ForegroundColor White
-    Write-Host "5. Run all operations" -ForegroundColor Magenta
+    Write-Host "5. Update system with winget" -ForegroundColor White
+    Write-Host "6. Run all operations" -ForegroundColor Magenta
     Write-Host "Q. Exit" -ForegroundColor Red
     Write-Host ""
 }
@@ -129,6 +130,27 @@ function Generate-BatteryReport {
     }
 }
 
+# Function to update system using winget
+function Update-System {
+    Write-Host "[*] Checking for system updates using winget..." -ForegroundColor Yellow
+    
+    # Check if winget is installed
+    try {
+        $wingetCheck = Get-Command winget -ErrorAction Stop
+        Write-Host "[*] Winget is installed. Proceeding with updates..." -ForegroundColor Yellow
+        
+        # Run winget upgrade --all
+        Write-Host "[*] Running winget upgrade --all..." -ForegroundColor Yellow
+        winget upgrade --all
+        
+        Write-Host "[+] System update completed!" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "[!] Winget is not installed or not available in PATH." -ForegroundColor Red
+        Write-Host "[!] Please install winget or add it to your PATH to use this feature." -ForegroundColor Red
+    }
+}
+
 # Function to run all operations
 function Run-AllOperations {
     # For automated operation, we'll skip Recycle Bin cleanup by default
@@ -137,6 +159,7 @@ function Run-AllOperations {
     Repair-System
     Reset-NetworkConfig
     Generate-BatteryReport
+    Update-System
 }
 
 # Function to exit the program
@@ -150,8 +173,13 @@ function Exit-Program {
     $exitMessage = "Thank you for using PC Fixer! Created by CeresF3B"
     $exitMessage | Out-File -FilePath "$env:TEMP\PCFixerExitMessage.txt"
     
-    # Exit with code 200
-    exit 200
+    # Ask the user to press any key to exit instead of closing automatically
+    Write-Host ""
+    Write-Host "[*] Press any key to exit..." -ForegroundColor Yellow
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    
+    # End the main loop without closing PowerShell
+    break
 }
 
 # Main program loop
@@ -164,7 +192,8 @@ do {
         "2" { Repair-System; pause }
         "3" { Reset-NetworkConfig; pause }
         "4" { Generate-BatteryReport; pause }
-        "5" { Run-AllOperations; pause }
+        "5" { Update-System; pause }
+        "6" { Run-AllOperations; pause }
         "Q" { Exit-Program }
         "q" { Exit-Program }
         default { Write-Host "[!] Invalid choice. Try again." -ForegroundColor Red; pause }
