@@ -2,7 +2,7 @@
 
 [![Windows 10/11](https://img.shields.io/badge/Windows-10%2F11-blue?logo=windows)](https://www.microsoft.com/windows)
 [![Maintenance](https://img.shields.io/badge/Maintenance-Active-green.svg)](https://github.com/CeresF3b/PC-Fixer)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-GPL--3.0-yellow.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Overview
 
@@ -67,7 +67,7 @@ irm https://raw.githubusercontent.com/CeresF3b/PC-Fixer/main/PCFixer.ps1 | iex
 - All operations are safe and follow Microsoft-recommended maintenance procedures
 
 ## License
-Distributed under MIT License. See `LICENSE` for more information.
+Distributed under GPL-3.0 License. See `LICENSE` for more information.
 
 ## Acknowledgments
 Created with ❤️ by CeresF3B
